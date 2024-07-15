@@ -1,4 +1,10 @@
-import { createBrowserRouter } from 'react-router-dom'
+
+import { createBrowserRouter } from 'react-router-dom';
+import Main from '../layouts/Main.jsx';
+import ErrorPage from '../pages/ErrorPage.jsx';
+import Login from '../pages/Login.jsx';
+import Signup from '../pages/Signup.jsx';
+import Statistics from "../pages/Dashboard/Common/Statistics.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -8,15 +14,10 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home />,
+                element: <Statistics />,
             },
-            {
-                path: '/contact-us',
-                element: <ContactUs />
-            }
-
         ],
     },
     { path: '/login', element: <Login /> },
-    { path: '/signup', element: <SignUp /> },
-])
+    { path: '/signup', element: <Signup /> },
+]);
