@@ -34,8 +34,7 @@ const Main = () => {
                     </div>
                 ) : (
                     <div className="container mx-auto p-4">
-                        <Signup/>
-                        <Login setUser={setUser}/>
+                        <Login />
                     </div>
                 )}
             </div>
