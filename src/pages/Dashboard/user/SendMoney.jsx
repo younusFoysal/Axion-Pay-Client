@@ -13,6 +13,14 @@ const SendMoney = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (amount < 49){
+            return toast.error('Less then $50 is not allowed for transactions.')
+        }else if (amount > 100){
+            const saveAmount = amount - 5;
+            setAmount(saveAmount)
+        }
+
         setShowConfirm(true);
     };
 
@@ -43,33 +51,6 @@ const SendMoney = () => {
 
     return (
         <>
-            {/*<form onSubmit={handleSubmit} className="space-y-4">*/}
-            {/*    <h2 className="text-xl font-semibold">Send Money</h2>*/}
-            {/*    <input*/}
-            {/*        type="email"*/}
-            {/*        placeholder="Recipient Email"*/}
-            {/*        value={recipientEmail}*/}
-            {/*        onChange={(e) => setRecipientEmail(e.target.value)}*/}
-            {/*        className="input input-bordered w-full"*/}
-            {/*        required*/}
-            {/*    />*/}
-            {/*    <input*/}
-            {/*        type="number"*/}
-            {/*        placeholder="Amount"*/}
-            {/*        value={amount}*/}
-            {/*        onChange={(e) => setAmount(e.target.value)}*/}
-            {/*        className="input input-bordered w-full"*/}
-            {/*        required*/}
-            {/*    />*/}
-            {/*    <button type="submit" className="btn btn-primary">Send</button>*/}
-
-            {/*    {showConfirm && (*/}
-            {/*        <ConfirmPassword*/}
-            {/*            onConfirm={handleConfirmPassword}*/}
-            {/*            onCancel={() => setShowConfirm(false)}*/}
-            {/*        />*/}
-            {/*    )}*/}
-            {/*</form>*/}
 
 
             <div className="max-w-md mx-auto bg-gray-100 shadow-md rounded-md overflow-hidden mt-16">
