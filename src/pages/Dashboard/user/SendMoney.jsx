@@ -1,18 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {useAuth} from "../../../context/AuthContext.jsx";
+import ConfirmPassword from "../../../components/ConfirmPassword.jsx";
 
-const SendMoney = ({ user }) => {
+
+const SendMoney = () => {
+    const { user } = useAuth();
     const [recipientEmail, setRecipientEmail] = useState('');
     const [amount, setAmount] = useState('');
+    const [showConfirm, setShowConfirm] = useState(false);
 
-    const handleSendMoney = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+        setShowConfirm(true);
+    };
+
+    const handleConfirmPassword = async (password) => {
         try {
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/send-money`, {
                 fromEmail: user.email,
                 toEmail: recipientEmail,
                 amount: parseFloat(amount),
+                password,
             });
+            console.log(response);
 
             if (response.data.success) {
                 alert('Money sent successfully');
@@ -21,18 +32,23 @@ const SendMoney = ({ user }) => {
             }
         } catch (error) {
             console.error('Error sending money:', error);
-            alert('Failed to send money');
+            alert('Failed to send money: ' + error.response?.data?.message || 'Server error');
+        } finally {
+            setShowConfirm(false);
+            setRecipientEmail('');
+            setAmount('');
         }
     };
 
     return (
-        <form onSubmit={handleSendMoney}>
-            <h2>Send Money</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+            <h2 className="text-xl font-semibold">Send Money</h2>
             <input
                 type="email"
                 placeholder="Recipient Email"
                 value={recipientEmail}
                 onChange={(e) => setRecipientEmail(e.target.value)}
+                className="input input-bordered w-full"
                 required
             />
             <input
@@ -40,9 +56,17 @@ const SendMoney = ({ user }) => {
                 placeholder="Amount"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
+                className="input input-bordered w-full"
                 required
             />
-            <button type="submit">Send</button>
+            <button type="submit" className="btn btn-primary">Send</button>
+
+            {showConfirm && (
+                <ConfirmPassword
+                    onConfirm={handleConfirmPassword}
+                    onCancel={() => setShowConfirm(false)}
+                />
+            )}
         </form>
     );
 };
