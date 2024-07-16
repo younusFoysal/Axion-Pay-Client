@@ -1,11 +1,12 @@
-
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../layouts/Main.jsx';
 import ErrorPage from '../pages/ErrorPage.jsx';
 import Login from '../pages/Login.jsx';
 import Signup from '../pages/Signup.jsx';
-import Statistics from "../pages/Dashboard/Common/Statistics.jsx";
-import SendMoney from "../pages/Dashboard/user/SendMoney.jsx";
+import Statistics from '../pages/Dashboard/Common/Statistics.jsx';
+import SendMoney from '../pages/Dashboard/user/SendMoney.jsx';
+import ProtectedRoute from '../PrivateRoute/ProtectedRoute.jsx';
+
 
 export const router = createBrowserRouter([
     {
@@ -15,14 +16,20 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Statistics />,
+                element: <ProtectedRoute><Statistics /></ProtectedRoute>,
             },
             {
                 path: '/sendmoney',
-                element: <SendMoney></SendMoney>
-            }
+                element: <ProtectedRoute><SendMoney /></ProtectedRoute>,
+            },
         ],
     },
-    { path: '/login', element: <Login /> },
-    { path: '/signup', element: <Signup /> },
+    {
+        path: '/login',
+        element: <Login />,
+    },
+    {
+        path: '/signup',
+        element: <Signup />,
+    },
 ]);

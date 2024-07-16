@@ -9,33 +9,71 @@ import {GrLogin} from "react-icons/gr";
 import {useAuth} from "../context/AuthContext.jsx";
 
 const Login = () => {
+
     const { setUser } = useAuth();
     const [identifier, setIdentifier] = useState('');
     const [password, setPassword] = useState('');
-
-    const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
 
-    const handleLogin = async (e) => {
+    const { data: userL = {}, isLoading } = useQuery({
+        queryKey: ['status', identifier],
+        queryFn: async () => {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/user/${identifier}`);
+            return data;
+        },
+        enabled: !!identifier
+    });
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
-                identifier,
-                password,
-            }, { withCredentials: true });
 
-            if (response.data.success) {
-                setUser({ identifier });
-                console.log('Login successful');
+        // Validate password
+        if (password.length !== 5) {
+            toast.error('PIN must be 5 digits');
+            return;
+        }
+
+        if (!/^\d+$/.test(password)) {
+            toast.error('PIN can only contain numbers');
+            return;
+        }
+
+        try {
+            setLoading(true);
+
+            if (userL.status === false) {
+                toast.error('Wait for Admin Approval ✋');
             } else {
-                console.log('Login failed');
+                const response = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+                    identifier,
+                    password,
+                }, { withCredentials: true });
+
+                if (response.data.success) {
+                    const userResponse = await axios.get(`${import.meta.env.VITE_API_URL}/user`, {
+                        withCredentials: true,
+                    });
+
+                    setUser(userResponse.data); // Update user in context
+                    console.log('Login successful');
+                    toast.success('Login Successful');
+                    navigate('/');
+                } else {
+                    console.log('Login failed');
+                    toast.error('Login failed');
+                }
             }
         } catch (error) {
             console.error('Error logging in:', error);
+            toast.error('Error logging in');
+        } finally {
+            setLoading(false);
         }
     };
+
+
 
 
     const divStyle = {
@@ -44,95 +82,11 @@ const Login = () => {
 
 
 
-    // Fetch Employees
-    const { data: userL = [], isLoading, refetch } = useQuery({
-        queryKey: ['status', identifier],
-        queryFn: async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/user/${identifier}`);
-            console.log("Identifier:", identifier, "Status:", data.status);
-            return data;
-        },
-    });
-
-    //console.log("Outside", userL)
-
-    const handleSubmit = async e => {
-        e.preventDefault()
-
-
-        // Validate password
-        if (password.length !== 5) {
-            console.log(password.length, password)
-            toast.error('Pin must be 5 digit')
-            return
-        }
-
-        if (!/^\d+$/.test(password)) {
-            toast.error('Pin can be only numbers')
-            return
-        }
-
-
-        try {
-            setLoading(true)
-
-            if (userL.status === false){
-                setLoading(false)
-                return toast.error('Wait for Admin Approval ✋ ')
-            }else {
-                const response = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
-                    identifier,
-                    password,
-                }, { withCredentials: true });
-
-                if (response.data.success) {
-                    setUser({ identifier });
-                    console.log('Login successful');
-                    toast.success('Login Successful')
-                    navigate('/')
-                } else {
-                    console.log('Login failed');
-                    toast.error('Login failed')
-                }
-            }
-
-
-            //toast.success('Signup Successful')
-        } catch (err) {
-            console.log(err)
-            toast.error(err.message)
-            setLoading(false)
-        } finally {
-            setLoading(false)
-        }
-    }
-
-
 
 
 
     return (
         <>
-            {/*<form onSubmit={handleLogin} className="space-y-4">*/}
-            {/*    <h2 className="text-xl font-semibold">Login</h2>*/}
-            {/*    <input*/}
-            {/*        type="text"*/}
-            {/*        placeholder="Email or Mobile Number"*/}
-            {/*        value={identifier}*/}
-            {/*        onChange={(e) => setIdentifier(e.target.value)}*/}
-            {/*        className="input input-bordered w-full"*/}
-            {/*        required*/}
-            {/*    />*/}
-            {/*    <input*/}
-            {/*        type="password"*/}
-            {/*        placeholder="PIN"*/}
-            {/*        value={password}*/}
-            {/*        onChange={(e) => setPassword(e.target.value)}*/}
-            {/*        className="input input-bordered w-full"*/}
-            {/*        required*/}
-            {/*    />*/}
-            {/*    <button type="submit" className="btn btn-primary">Login</button>*/}
-            {/*</form>*/}
 
 
             <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
