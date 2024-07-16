@@ -94,7 +94,7 @@ const Sidebar = () => {
 
                     <div className="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
 
-                        <Link to={'/sendmoney'}>
+                        <Link to={'/transactions'}>
                             <div className="flex ml-3  items-center text-gray-600 hover:text-black my-4 w-full">
                                 <TbClockDollar className="mr-4"/>
                                 All Transactions

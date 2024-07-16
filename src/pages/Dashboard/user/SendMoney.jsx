@@ -3,6 +3,7 @@ import axios from 'axios';
 import {useAuth} from "../../../context/AuthContext.jsx";
 import ConfirmPassword from "../../../components/ConfirmPassword.jsx";
 import toast from 'react-hot-toast'
+import useAxiosSecure from "../../../hooks/useAxiosSecure.jsx";
 
 
 const SendMoney = () => {
@@ -10,9 +11,12 @@ const SendMoney = () => {
     const [recipientEmail, setRecipientEmail] = useState('');
     const [amount, setAmount] = useState('');
     const [showConfirm, setShowConfirm] = useState(false);
+    const axiosSecure = useAxiosSecure();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+
 
         if (amount < 49){
             return toast.error('Less then $50 is not allowed for transactions.')
@@ -25,11 +29,18 @@ const SendMoney = () => {
     };
 
     const handleConfirmPassword = async (password) => {
+
+
+
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/send-money`, {
+
+            const sendmoney = "sendmoney"
+
+            const response = await axiosSecure.post(`/send-money`, {
                 fromEmail: user?.user?.email,
                 toEmail: recipientEmail,
                 amount: parseFloat(amount),
+                transType: sendmoney,
                 password,
             });
             console.log(response);

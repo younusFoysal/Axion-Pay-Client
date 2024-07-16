@@ -30,7 +30,7 @@ const UserMenu = () => {
                 </div>
             </Link>
 
-            <Link to={'/sendmoney'}>
+            <Link to={'/cashin'}>
                 <div className="flex ml-4  items-center text-gray-600 hover:text-black my-4 w-full">
                     <FaCircleDollarToSlot className="mr-4"/>
                     Cash In
