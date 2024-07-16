@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from 'react';
-import { Outlet } from 'react-router-dom';
+import {Outlet, useNavigate} from 'react-router-dom';
 import Logout from "../Logout.jsx";
 import Signup from "../pages/Signup.jsx";
 import Login from "../pages/Login.jsx";
@@ -12,6 +12,13 @@ import TransactionHistory from "../pages/Dashboard/Common/TransactionHistory.jsx
 const Main = () => {
 
     const { user, setUser } = useAuth();
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!user) {
+            navigate('/login');
+        }
+    }, [user, navigate]);
 
     return (
         <div>
@@ -23,18 +30,13 @@ const Main = () => {
             </main>
 
             <div className="App">
-                {user ? (
+                {user && (
                     <div className="container mx-auto p-4">
                         <h1>Welcome, {user.email}</h1>
                         <p>Balance: ${user.balance}</p>
                         <Logout setUser={setUser}/>
                         <SendMoney user={user}/>
-                        <TransactionHistory />
-
-                    </div>
-                ) : (
-                    <div className="container mx-auto p-4">
-                        <Login />
+                        <TransactionHistory/>
                     </div>
                 )}
             </div>
