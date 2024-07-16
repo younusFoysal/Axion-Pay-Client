@@ -118,24 +118,24 @@ const Signup = () => {
 
     return (
         <>
-            <form onSubmit={handleRegister}>
-                <h2>Register</h2>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Register</button>
-            </form>
+            {/*<form onSubmit={handleRegister}>*/}
+            {/*    <h2>Register</h2>*/}
+            {/*    <input*/}
+            {/*        type="email"*/}
+            {/*        placeholder="Email"*/}
+            {/*        value={email}*/}
+            {/*        onChange={(e) => setEmail(e.target.value)}*/}
+            {/*        required*/}
+            {/*    />*/}
+            {/*    <input*/}
+            {/*        type="password"*/}
+            {/*        placeholder="Password"*/}
+            {/*        value={password}*/}
+            {/*        onChange={(e) => setPassword(e.target.value)}*/}
+            {/*        required*/}
+            {/*    />*/}
+            {/*    <button type="submit">Register</button>*/}
+            {/*</form>*/}
 
 
             <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
@@ -155,7 +155,7 @@ const Signup = () => {
                                 <div className="flex flex-col items-center">
 
 
-                                    <div className='flex justify-center items-center min-h-screen'>
+                                    <div className='flex justify-center '>
                                         <div
                                             className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900 '>
                                             <form onSubmit={handleSubmit} className='space-y-6'>
@@ -298,18 +298,18 @@ const Signup = () => {
                                             <div className='flex items-center pt-4 space-x-1'>
                                                 <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                                                 <p className='px-3 text-sm dark:text-gray-400'>
-                                                    Signup with new account
+                                                    Login with new account
                                                 </p>
                                                 <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                                             </div>
 
                                             <p className='px-6 mt-4 text-sm text-center text-gray-400'>
-                                                Dont have an account?{' '}
+                                                Already have an account?{' '}
                                                 <Link
-                                                    to='/signup'
+                                                    to='/login'
                                                     className='text-indigo-500 hover:underline hover:text-indigo-400 font-bold'
                                                 >
-                                                    Signup
+                                                    Login
                                                 </Link>
                                                 .
                                             </p>
