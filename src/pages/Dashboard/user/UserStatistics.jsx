@@ -49,11 +49,19 @@ const UserStatistics = () => {
                     <div className="flex flex-col md:flex-row">
                         <div
                             className="bg-no-repeat bg-red-200 border border-red-300 rounded-xl w-full md:w-7/12 mb-4 md:mr-2 p-6">
-                            <p className="text-3xl md:text-5xl text-indigo-900">Welcome <br/>
+                            <div className="flex justify-between flex-col md:flex-row">
+                                <div><p className="text-3xl md:text-5xl text-indigo-900">Welcome <br/>
 
-                                <strong>
-                                    {user?.user.name}
-                                </strong></p>
+                                    <strong>
+                                        {user?.user.name}
+                                    </strong></p></div>
+                                <div
+                                    className="flex justify-center items-center h-20 text-white rounded-xl shadow-md p-6 max-w-[240px] bg-red-500 bg-opacity-30 backdrop-filter backdrop-blur-lg">
+                                    <div className="font-semibold text-5xl tracking-tight -mt-2">User</div>
+                                </div>
+
+
+                            </div>
 
                             <div className="h-20 md:h-32 rounded-xl mt-11 shadow-md p-6 bg-red-300">
                                 <div className="font-semibold mb-1 text-lg md:text-xl text-indigo-900">Account Balance
@@ -77,7 +85,7 @@ const UserStatistics = () => {
                                 </div>
                             </div>
 
-                            <Link to={'/utransactions'}>
+                            <Link to={'/transactions'}>
                             <div
                                className="btn border-0 bg-orange-400 text-lg md:text-xl text-white  hover:bg-orange-500 inline-block rounded-full mt-6 md:mt-12 px-4 md:px-8 py-1 md:py-2">
 

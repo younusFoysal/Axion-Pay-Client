@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import logo from './../../public/AxionPay.png'
+import logo from '/AxionPay.png'
 import {AiOutlineBars} from "react-icons/ai";
 import {TbClockDollar, TbLogout} from "react-icons/tb";
 import {CgProfile} from "react-icons/cg";

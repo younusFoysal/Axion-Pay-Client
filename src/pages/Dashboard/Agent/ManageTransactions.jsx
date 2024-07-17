@@ -32,7 +32,7 @@ const ManageTransactions = () => {
         };
 
         fetchCashInRequests();
-    }, []);
+    }, [cashInRequests]);
 
 
 
@@ -80,6 +80,53 @@ const ManageTransactions = () => {
         });
     };
 
+    // /reject-cash-in
+    const handleReject = async (id, uid) => {
+        console.log(id, uid)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Reject!"
+        }).then(async (result) => { // Make this callback async
+            if (result.isConfirmed) {
+                try {
+                    setuserEmail(uid);
+
+                    const response = await axiosSecure.post(`/reject-cash-in`, {
+                        agentEmail: user.user.email,
+                        userEmail: uid,
+                        requestId: id,
+                    });
+                    console.log(response);
+                    toast.success(response.data.message);
+
+                    if (response.data.success) {
+                        toast.success('Rejection successful');
+                        Swal.fire({
+                            title: "Rejected!",
+                            text: "Rejection successful.",
+                            icon: "success"
+                        });
+                    } else {
+                        console.log(response.data.message);
+                        //toast.success(response.data.message);
+                    }
+                } catch (error) {
+                    console.error('Error Rejection:', error);
+                    toast.error('Failed to Rejection: ' + error.response?.data?.message || 'Server error');
+                } finally {
+                    setuserEmail('');
+                }
+
+
+            }
+        });
+    };
+
 
 
 
@@ -110,20 +157,24 @@ const ManageTransactions = () => {
                         <td className="px-6 py-4 whitespace-nowrap">{new Date(request.requestedAt).toLocaleString()}</td>
                         <td className="px-6 py-4 whitespace-nowrap">
                             {request.status === "pending" ? <span
-                                    className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Pending</span> :
+                                    className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Pending</span> : request.status === "rejected" ?
+                                <span
+                                    className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-200 text-red-900">Rejected</span> :
                                 <span
                                     className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Approved</span>}
 
                         </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                            <button
-                                className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
+                                <button
+                                    className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
                                 onClick={()=>handleApprove(request._id, request.userEmail)}
                             >
                                  Approve
                             </button>
                             <button
-                                className="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">
+                                className="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out"
+                                onClick={()=>handleReject(request._id, request.userEmail)}
+                            >
                                 Reject
                             </button>
                         </td>
