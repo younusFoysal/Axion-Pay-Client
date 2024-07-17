@@ -70,11 +70,18 @@ const TransactionHistory = () => {
                                             Num
                                         </th>
                                         <th scope="col"
-                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> Sent
-                                            To
+                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> From
+                                        </th>
+                                        <th scope="col"
+                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> To
+
                                         </th>
                                         <th scope="col"
                                             className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize"> Amount
+
+                                        </th>
+                                        <th scope="col"
+                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize"> Type
 
                                         </th>
                                         <th scope="col"
@@ -98,6 +105,10 @@ const TransactionHistory = () => {
                                                     {num++}
                                                 </td>
 
+                                                <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">
+                                                    {transaction.fromEmail}
+                                                </td>
+
 
                                                 <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">
                                                     {transaction.toEmail}
@@ -105,6 +116,9 @@ const TransactionHistory = () => {
 
                                                 <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
                                                     {transaction.amount}
+                                                </td>
+                                                <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
+                                                    {transaction.transType}
                                                 </td>
                                                 <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
                                                     {new Date(transaction.timestamp).toLocaleString()}

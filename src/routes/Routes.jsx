@@ -8,6 +8,7 @@ import SendMoney from '../pages/Dashboard/user/SendMoney.jsx';
 import ProtectedRoute from '../PrivateRoute/ProtectedRoute.jsx';
 import TransactionHistory from "../pages/Dashboard/Common/TransactionHistory.jsx";
 import CashIn from "../pages/Dashboard/user/CashIn.jsx";
+import ManageTransactions from "../pages/Dashboard/Agent/ManageTransactions.jsx";
 
 
 export const router = createBrowserRouter([
@@ -32,6 +33,12 @@ export const router = createBrowserRouter([
                 path: '/cashin',
                 element: <ProtectedRoute><CashIn /></ProtectedRoute>,
             },
+            {
+                path: '/ManageTransactions',
+                element: <ProtectedRoute><ManageTransactions /></ProtectedRoute>,
+            },
+
+
 
         ],
     },

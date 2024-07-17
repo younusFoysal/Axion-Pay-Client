@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import useAxiosSecure from "../../../hooks/useAxiosSecure.jsx";
+import {useAuth} from "../../../context/AuthContext.jsx";
 
 const CashIn = () => {
+
+    const { user } = useAuth();
 
     const [agentEmail, setAgentEmail] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [amount, setAmount] = useState('');
     const [message, setMessage] = useState('');
+    const axiosSecure = useAxiosSecure();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('/request-cash-in', {
+            const response = await axiosSecure.post('/request-cash-in', {
                 agentEmail,
-                userEmail,
+                userEmail: user.user.email,
                 amount: parseFloat(amount),
             });
 
@@ -43,15 +48,6 @@ const CashIn = () => {
                             type="email"
                             value={agentEmail}
                             onChange={(e) => setAgentEmail(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>Your Email:</label>
-                        <input
-                            type="email"
-                            value={userEmail}
-                            onChange={(e) => setUserEmail(e.target.value)}
                             required
                         />
                     </div>

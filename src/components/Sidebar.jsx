@@ -7,6 +7,7 @@ import {CgProfile} from "react-icons/cg";
 import Logout from "../Logout.jsx";
 import {useAuth} from "../context/AuthContext.jsx";
 import UserMenu from "./Menu/UserMenu.jsx";
+import AgentMenu from "./Menu/AgentMenu.jsx";
 
 const Sidebar = () => {
 
@@ -80,7 +81,7 @@ const Sidebar = () => {
                         <nav>
 
                                 {user?.user?.role === 'user' ? <UserMenu/> : undefined}
-                                {/*{role === 'hr' ? <HrMenu /> : undefined}*/}
+                                {user?.user?.role === 'agent' ? <AgentMenu /> : undefined}
                                 {/*{role === 'admin' ? <AdminMenu /> : undefined}*/}
 
 
