@@ -21,7 +21,7 @@ const AdminMenu = () => {
                 </div>
             </Link>
 
-            <Link to={'/sendmoney'}>
+            <Link to={'/allTransactions'}>
                 <div className="flex ml-4  items-center text-gray-600 hover:text-black my-4 w-full">
                     <TbHeartRateMonitor className="mr-4"/>
                     System Monitoring

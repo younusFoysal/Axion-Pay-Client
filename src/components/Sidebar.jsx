@@ -108,7 +108,7 @@ const Sidebar = () => {
                         }
 
 
-                        <Link to={'/sendmoney'}>
+                        <Link to={'/profile'}>
                             <div className="flex ml-3  items-center text-gray-600 hover:text-black my-4 w-full">
                                 <CgProfile className="mr-4"/>
                                 Profile

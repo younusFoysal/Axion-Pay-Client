@@ -11,6 +11,8 @@ import CashIn from "../pages/Dashboard/user/CashIn.jsx";
 import ManageTransactions from "../pages/Dashboard/Agent/ManageTransactions.jsx";
 import CashOut from "../pages/Dashboard/user/CashOut.jsx";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers.jsx";
+import AllTransactions from "../pages/Dashboard/Admin/AllTransactions.jsx";
+import Profile from "../pages/Dashboard/Common/Profile.jsx";
 
 
 export const router = createBrowserRouter([
@@ -46,6 +48,14 @@ export const router = createBrowserRouter([
             {
                 path: '/ManageUsers',
                 element: <ProtectedRoute><ManageUsers /></ProtectedRoute>,
+            },
+            {
+                path: '/allTransactions',
+                element: <ProtectedRoute><AllTransactions /></ProtectedRoute>,
+            },
+            {
+                path: '/profile',
+                element: <ProtectedRoute><Profile /></ProtectedRoute>,
             },
 
 

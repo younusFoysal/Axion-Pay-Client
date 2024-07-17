@@ -70,22 +70,27 @@ const TransactionHistory = () => {
                                             Num
                                         </th>
                                         <th scope="col"
-                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> From
+                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl">
+                                            From
                                         </th>
                                         <th scope="col"
-                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> To
+                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl">
+                                            To
 
                                         </th>
                                         <th scope="col"
-                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize"> Amount
+                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">
+                                            Amount
 
                                         </th>
                                         <th scope="col"
-                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize"> Type
+                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">
+                                            Type
 
                                         </th>
                                         <th scope="col"
-                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize"> Date
+                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">
+                                            Date
                                         </th>
                                         <th scope="col"
                                             className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">
