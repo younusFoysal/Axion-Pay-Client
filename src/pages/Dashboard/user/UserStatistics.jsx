@@ -1,41 +1,36 @@
-import React, {useEffect} from 'react';
-import SendMoney from "./SendMoney.jsx";
-import {IoIosArrowForward, IoMdHome} from "react-icons/io";
-import {TbBrandGoogleHome, TbClockDollar, TbLogout} from "react-icons/tb";
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
-import {BsFillSendCheckFill} from "react-icons/bs";
-import {LiaMoneyBillWaveAltSolid} from "react-icons/lia";
-import {FaCircleDollarToSlot} from "react-icons/fa6";
 import {useAuth} from "../../../context/AuthContext.jsx";
-import {BiDollar} from "react-icons/bi";
-import {CgProfile} from "react-icons/cg";
-import Logout from "../../../Logout.jsx";
-import LoadingSpinner from "../../../components/LoadingSpinner.jsx";
-import axios from "axios";
-import {useQuery} from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure.jsx";
+
+
+
 
 const UserStatistics = () => {
-    const { user , refetch  } = useAuth();
+    const { user  } = useAuth();
 
-    // useEffect(() => {
-    //     fetchUser();
-    // }, [fetchUser]);
+    const axiosSecure = useAxiosSecure();
+    const [userBalance, setUserBalance] = useState(null);
+    const [error, setError] = useState('');
+    const [phone, setPhone] = useState(null);
 
 
-
-
-    // // Fetch Employees
-    // const { data: userL = [], isLoading, refetch } = useQuery({
-    //     queryKey: ['status', user],
-    //     queryFn: async () => {
-    //         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/user/${user?.user?.email}`);
-    //         console.log("Identifier:", user.user.email, "Status:", data.status);
-    //         return data;
-    //     },
-    // });
-
-    // if (isLoading) return <LoadingSpinner />
-    // console.log(userL)
+    const fetchUserBalance = async () => {
+        try {
+            const response = await axiosSecure.get(`/user/${user.user.email}`);
+            //console.log(response.data)
+            if (response.data) {
+                setUserBalance(response.data.balance);
+                setPhone(response.data.phone)
+                //console.log(response.data);
+            } else {
+                setError('Error retrieving balance');
+            }
+        } catch (error) {
+            setError('Error retrieving balance');
+            console.error('There was an error!', error);
+        }
+    };
 
 
 
@@ -49,6 +44,7 @@ const UserStatistics = () => {
                     <div className="flex flex-col md:flex-row">
                         <div
                             className="bg-no-repeat bg-red-200 border border-red-300 rounded-xl w-full md:w-7/12 mb-4 md:mr-2 p-6">
+
                             <div className="flex justify-between flex-col md:flex-row">
                                 <div><p className="text-3xl md:text-5xl text-indigo-900">Welcome <br/>
 
@@ -63,12 +59,35 @@ const UserStatistics = () => {
 
                             </div>
 
-                            <div className="h-20 md:h-32 rounded-xl mt-11 shadow-md p-6 bg-red-300">
-                                <div className="font-semibold mb-1 text-lg md:text-xl text-indigo-900">Account Balance
+
+                            <div
+                                className=" flex justify-between h-20 md:h-32 rounded-xl mt-11 shadow-md p-6 bg-red-300">
+
+
+                                <div>
+                                    <div className="font-semibold mb-1 text-lg md:text-xl text-indigo-900">Account
+                                        Balance
+                                    </div>
+                                    <div
+                                        className="font-semibold text-5xl md:text-6xl tracking-tight text-indigo-900">
+
+                                        {error ? (
+                                            error
+                                        ) : (
+                                            userBalance !== null ? userBalance.toFixed(2) : user?.user.balance.toFixed(2)
+                                        )}
+
+                                    </div>
                                 </div>
-                                <div
-                                    className="font-semibold text-5xl md:text-6xl tracking-tight text-indigo-900">${user?.user.balance}
+
+                                <div>
+                                    <button
+                                        className="btn btn-sm btn-outline bg-red-500 bg-opacity-30 border-0 text-white hover:bg-red-500"
+                                        onClick={fetchUserBalance}
+                                    >Refresh Balance
+                                    </button>
                                 </div>
+
                             </div>
 
 
@@ -78,18 +97,24 @@ const UserStatistics = () => {
                             className="bg-no-repeat bg-orange-200 border border-orange-300 rounded-xl w-full md:w-5/12 mb-4 md:ml-2 p-6">
 
                             <div className="h-20 md:h-32 rounded-xl mt-11 shadow-md p-6 bg-orange-400">
-                                <div className="font-semibold mb-1 text-lg md:text-xl text-white">Total Transactions
+                                <div className="font-semibold mb-1 text-lg md:text-xl text-white">Phone
                                 </div>
                                 <div
-                                    className="font-semibold text-5xl md:text-6xl tracking-tight text-white">{user?.user.balance}
+                                    className="font-semibold text-4xl md:text-5xl tracking-tight text-white">
+
+                                    {error ? (
+                                        error
+                                    ) : (
+                                        phone !== null ? phone : user.user.phone
+                                    )}
                                 </div>
                             </div>
 
                             <Link to={'/transactions'}>
-                            <div
-                               className="btn border-0 bg-orange-400 text-lg md:text-xl text-white  hover:bg-orange-500 inline-block rounded-full mt-6 md:mt-12 px-4 md:px-8 py-1 md:py-2">
+                                <div
+                                    className="btn border-0 bg-orange-400 text-lg md:text-xl text-white  hover:bg-orange-500 inline-block rounded-full mt-6 md:mt-12 px-4 md:px-8 py-1 md:py-2">
 
-                                    See Transactions
+                                    See All Transactions
                                 </div>
                             </Link>
                         </div>

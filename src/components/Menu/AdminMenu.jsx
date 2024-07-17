@@ -1,12 +1,9 @@
+import React from 'react';
 import {Link} from "react-router-dom";
-import {TbBrandGoogleHome} from "react-icons/tb";
-import { FaSackDollar} from "react-icons/fa6";
-import {FaFileInvoiceDollar} from "react-icons/fa";
+import {TbBrandGoogleHome, TbHeartRateMonitor} from "react-icons/tb";
+import {FaSackDollar, FaUsersGear} from "react-icons/fa6";
 
-const AgentMenu = () => {
-
-
-
+const AdminMenu = () => {
     return (
         <div className="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
 
@@ -17,17 +14,17 @@ const AgentMenu = () => {
                 </div>
             </Link>
 
-            <Link to={'/ManageTransactions'}>
+            <Link to={'/ManageUsers'}>
                 <div className="flex ml-4  items-center text-gray-600 hover:text-black my-4 w-full">
-                    <FaFileInvoiceDollar className="mr-4"/>
-                    Transaction Management
+                    <FaUsersGear className="mr-4"/>
+                    User Management
                 </div>
             </Link>
 
             <Link to={'/sendmoney'}>
                 <div className="flex ml-4  items-center text-gray-600 hover:text-black my-4 w-full">
-                    <FaSackDollar className="mr-4"/>
-                    Balance Inquiry
+                    <TbHeartRateMonitor className="mr-4"/>
+                    System Monitoring
                 </div>
             </Link>
 
@@ -36,4 +33,4 @@ const AgentMenu = () => {
     );
 };
 
-export default AgentMenu;
+export default AdminMenu;

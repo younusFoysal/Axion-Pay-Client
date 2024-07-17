@@ -8,6 +8,7 @@ import Logout from "../Logout.jsx";
 import {useAuth} from "../context/AuthContext.jsx";
 import UserMenu from "./Menu/UserMenu.jsx";
 import AgentMenu from "./Menu/AgentMenu.jsx";
+import AdminMenu from "./Menu/AdminMenu.jsx";
 
 const Sidebar = () => {
 
@@ -82,6 +83,7 @@ const Sidebar = () => {
 
                                 {user?.user?.role === 'user' ? <UserMenu/> : undefined}
                                 {user?.user?.role === 'agent' ? <AgentMenu /> : undefined}
+                                {user?.user?.role === 'admin' ? <AdminMenu /> : undefined}
                                 {/*{role === 'admin' ? <AdminMenu /> : undefined}*/}
 
 
@@ -95,12 +97,16 @@ const Sidebar = () => {
 
                     <div className="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
 
-                        <Link to={'/transactions'}>
-                            <div className="flex ml-3  items-center text-gray-600 hover:text-black my-4 w-full">
-                                <TbClockDollar className="mr-4"/>
-                                All Transactions
-                            </div>
-                        </Link>
+
+                        {user?.user?.role === 'admin' ? '' :
+                            <Link to={'/transactions'}>
+                                <div className="flex ml-3  items-center text-gray-600 hover:text-black my-4 w-full">
+                                    <TbClockDollar className="mr-4"/>
+                                    All Transactions
+                                </div>
+                            </Link>
+                        }
+
 
                         <Link to={'/sendmoney'}>
                             <div className="flex ml-3  items-center text-gray-600 hover:text-black my-4 w-full">

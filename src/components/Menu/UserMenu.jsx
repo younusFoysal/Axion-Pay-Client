@@ -23,7 +23,7 @@ const UserMenu = () => {
                 </div>
             </Link>
 
-            <Link to={'/sendmoney'}>
+            <Link to={'/cashout'}>
                 <div className="flex ml-4  items-center text-gray-600 hover:text-black my-4 w-full">
                     <LiaMoneyBillWaveAltSolid className="mr-4"/>
                     Cash Out

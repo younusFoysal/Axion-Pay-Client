@@ -97,7 +97,7 @@ const AgentStatistics = () => {
                                         {error ? (
                                             error
                                         ) : (
-                                            userBalance !== null ? userBalance : user?.user.balance
+                                            userBalance !== null ? userBalance.toFixed(2) : user?.user.balance.toFixed(2)
                                         )}
 
                                     </div>

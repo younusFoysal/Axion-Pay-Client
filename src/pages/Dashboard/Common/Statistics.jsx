@@ -23,6 +23,7 @@ const Statistics = () => {
         <>
             {/*{role === 'admin' && <AdminStatistics />}*/}
             {/*{role === 'hr' && <HrStatistics/>}*/}
+            {user?.user?.role === 'admin' && <AdminStatistics />}
             {user?.user?.role === 'agent' && <AgentStatistics />}
             {user?.user?.role === 'user' && <UserStatistics />}
         </>
