@@ -30,13 +30,13 @@ const Main = () => {
 
     return (
         <div className='relative min-h-screen md:flex'>
-            <header>
-                <h1>My Application</h1>
-            </header>
+            {/*<header>*/}
+            {/*    <h1>A Better Way to Pay</h1>*/}
+            {/*</header>*/}
 
             <Sidebar></Sidebar>
 
-            <div className='flex-1 md:ml-32'>
+            <div className='flex-1 md:ml-64'>
             <div>
                 <Outlet/>
             </div>

@@ -4,7 +4,6 @@ import {SiSpinrilla} from "react-icons/si";
 import {Link, useNavigate} from "react-router-dom";
 import {useQuery} from "@tanstack/react-query";
 import toast from 'react-hot-toast'
-import {AiOutlineLogin} from "react-icons/ai";
 import {GrLogin} from "react-icons/gr";
 import {useAuth} from "../context/AuthContext.jsx";
 

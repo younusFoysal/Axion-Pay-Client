@@ -40,9 +40,9 @@ const CashIn = () => {
     };
 
     return (
-        <>
+        <div className="animated-background bg-gradient-to-tr from-[#bae6fd] via-[#bfdbfe] to-[#c7d2fe] min-h-screen pt-16">
 
-            <div className="max-w-md mx-auto bg-gray-100 shadow-md rounded-md overflow-hidden mt-16">
+            <div className="max-w-md mx-auto bg-gray-100 shadow-md rounded-md overflow-hidden ">
                 <div className="bg-blue-600 text-white p-4 flex justify-between">
                     <div className="font-bold text-lg">Request Cash-In</div>
                     <div className="text-lg"><i className="fab fa-cc-visa"></i></div>
@@ -135,7 +135,7 @@ const CashIn = () => {
 
             </div>
 
-        </>
+        </div>
     );
 };
 

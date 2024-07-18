@@ -24,7 +24,7 @@ const AgentMenu = () => {
                 </div>
             </Link>
 
-            <Link to={'/sendmoney'}>
+            <Link to={'/balance'}>
                 <div className="flex ml-4  items-center text-gray-600 hover:text-black my-4 w-full">
                     <FaSackDollar className="mr-4"/>
                     Balance Inquiry

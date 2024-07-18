@@ -49,7 +49,7 @@ const Profile = () => {
 
 
     return (
-        <div className=" animated-background bg-gradient-to-tr from-[#172554] via-[#2563eb] to-[#38bdf8] min-h-screen">
+        <div className=" animated-background bg-gradient-to-tr from-[#bae6fd] via-[#bfdbfe] to-[#c7d2fe] min-h-screen">
             <div className=" pt-10 px-4 md:px-10 pb-4 w-full items-center justify-center ">
 
 

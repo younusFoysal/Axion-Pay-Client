@@ -13,6 +13,7 @@ import CashOut from "../pages/Dashboard/user/CashOut.jsx";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers.jsx";
 import AllTransactions from "../pages/Dashboard/Admin/AllTransactions.jsx";
 import Profile from "../pages/Dashboard/Common/Profile.jsx";
+import Balance from "../pages/Dashboard/Agent/Balance.jsx";
 
 
 export const router = createBrowserRouter([
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
             {
                 path: '/profile',
                 element: <ProtectedRoute><Profile /></ProtectedRoute>,
+            },
+            {
+                path: '/balance',
+                element: <ProtectedRoute><Balance /></ProtectedRoute>,
             },
 
 

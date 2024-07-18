@@ -36,7 +36,7 @@ const TransactionHistory = () => {
     let num = 1;
 
     return (
-        <div className="bg-indigo-100 min-h-screen">
+        <div className="animated-background bg-gradient-to-tr from-[#bae6fd] via-[#bfdbfe] to-[#c7d2fe] min-h-screen pt-2">
             <div className="flex flex-col md:flex-row pt-10 px-4 md:px-10 pb-4 w-full items-center justify-center">
 
                 {/*<div className="mt-4">*/}
@@ -56,8 +56,8 @@ const TransactionHistory = () => {
                         <div className="min-w-full inline-block align-middle">
 
 
-                            <h1 className="text-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r mb-6 from-blue-600 to-indigo-500">
-                                Transaction History
+                            <h1 className="text-4xl text-center border-1 rounded text-white shadow-md mb-6 p-4 font-bold text-transparentanimated-background bg-gradient-to-tr from-blue-500 via-sky-500 to-sky-300 ">
+                                <span className=" -mb-4 ">Transaction History</span>
                             </h1>
 
 
