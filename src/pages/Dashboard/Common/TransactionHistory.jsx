@@ -66,15 +66,15 @@ const TransactionHistory = () => {
                                     <thead>
                                     <tr className="bg-gray-50">
                                         <th scope="col"
-                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl">
+                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize ">
                                             Num
                                         </th>
                                         <th scope="col"
-                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl">
+                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize ">
                                             From
                                         </th>
                                         <th scope="col"
-                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl">
+                                            className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize ">
                                             To
 
                                         </th>
