@@ -84,7 +84,6 @@ react-hot-toast
 react-icons
 react-router-dom
 react-toastify
-recharts
 sweetalert2
 tailwindcss
 ```
