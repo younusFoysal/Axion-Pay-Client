@@ -3,7 +3,7 @@
 
 
 <p align="center">
-  <img src="https://github.com/younusFoysal/HR-Hub-Pro-Client/blob/main/public/hrHubPro.gif" alt="Axion Pay">
+  <img src="src/assets/axion.png" alt="Axion Pay">
 </p>
 <br>
 
